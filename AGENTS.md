@@ -22,6 +22,8 @@ Mật khẩu, key, secret: **không ghi ở đây**. Xem `.env-doctotek/`:
 - Domain Bayer đều đi qua **Cloudflare** nên DNS không lộ IP gốc:
   - prod: `bayer.doctotek.com` (học viên), `internal-bayer.doctotek.com` (admin + API)
   - staging: `qa-bayer.doctotek.com`, `internal-qa-bayer.doctotek.com`
+  - `qa-bayer.doctotek.com` bị **Cloudflare Access** chặn (302 sang trang đăng nhập) → user thường không test được staging. API `internal-qa-bayer…/api` vẫn gọi được. Kiểm tra bản web staging thì đọc thẳng `/opt/bayer/flutter-web/version.json` trên .66.
+  - Script kiểm tra end-to-end fix HLS (18 check: native `?t=`, Bearer cũ, các ca 401) nên viết lại theo mẫu: login → `progress/material` → master/child/segment → token sai bài / không auth / token làm Bearer.
 - Cách đã dùng để tìm IP prod khi chưa biết: mở log job "Deploy to Production VPS" trên GitHub Actions (`eDocJo/bayer-api`), bước **Set up job** in ra `Machine name: cloudvps8795`. Quy tắc tên superdata: `cloudvpsAABBB` tương ứng `112.213.AA.BBB`.
 - Deploy prod/staging dùng **self-hosted runner** (nhãn `bayer-vps` / `bayer-staging-vps`), runner tự kết nối ra GitHub nên workflow không ghi IP.
 - Postgres không mở cổng ra host. Truy vấn bằng: `ssh ... root@<IP> "docker exec -i bayer-postgres-1 psql -U <user> -d <db>" <<'SQL' ... SQL` (heredoc để khỏi lỗi escape nháy).
@@ -82,6 +84,29 @@ Mật khẩu, key, secret: **không ghi ở đây**. Xem `.env-doctotek/`:
 - Gọi `npx -y agent-browser` mỗi lần rất chậm. Dùng binary trực tiếp: `~/AppData/Local/npm-cache/_npx/<hash>/node_modules/.bin/agent-browser`.
 - Test Chrome desktop **không tái hiện lỗi iPad**. Lỗi riêng iOS phải dựa vào log `system_logs` hoặc thiết bị thật.
 - Lấy token từ trang đã đăng nhập: `localStorage.accessToken` (admin React), `flutter.USER_SESSION` (app học viên).
+
+## Push repo GitHub
+
+**Cách push doctotek-current repo lên GitHub:**
+
+```bash
+# 1. Dùng SSH key đã setup (id_ed25519_github)
+export GIT_SSH_COMMAND="ssh -i ~/.ssh/id_ed25519_github"
+eval "$(ssh-agent -s)"
+ssh-add ~/.ssh/id_ed25519_github
+
+# 2. Thiết lập remote SSH
+cd E:\Project2026\doctotek-current
+git remote add origin git@github.com:vinhnguyenthanhdn/doctotek-current.git
+git branch -M main
+git push -u origin main
+```
+
+**Notes:**
+- SSH key đã xác thực: `ssh -T git@github.com` trả `Hi vinhnguyenthanhdn!`
+- Nếu repo chưa tồn tại, dùng `gh repo create doctotek-current --public --source=. --remote=origin --push` (sau khi `gh auth status` ok)
+- `.gitignore` đã config: ignore `sub-project/`, `.env*`, `*.key`, `*.secret`, `node_modules/`
+- Windows Credential Manager lưu token ở `LegacyGeneric:target=git:https://github.com` nhưng không thể extract via cmdline, dùng SSH thay thế
 
 ## Bẫy đã gặp (tránh lặp lại)
 - Đừng kết luận nguyên nhân chỉ từ endpoint "trông giống". Phải xác định **đúng endpoint client thật sự gọi** (xem network, hoặc đọc mã nguồn/`main.dart.js`).
