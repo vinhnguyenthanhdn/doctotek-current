@@ -32,3 +32,7 @@ yarn.lock
 # Logs
 *.log
 logs/
+
+# Local-only (repo lồng nhau, secret, tài liệu nội bộ)
+agentdesk/
+__pycache__/

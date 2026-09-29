@@ -1,0 +1,435 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Bố cục tham khảo DoctoTek</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+:root{
+  --accent:#D93300; --accent-soft:#FFF4EF; --accent-line:#EC997F;
+  --ink:#212121; --ink-2:#5B5550; --ink-3:#8A837D;
+  --bg:#FFFFFF; --band:#F5F5F5; --warm:#FFF9F6; --line:#E7E2DE; --dark:#2C2C2C;
+  --shot-bg:#EDEAE7;
+  --sans:"Be Vietnam Pro",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,Menlo,monospace;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    color-scheme:dark;
+    --accent:#FF6A3D; --accent-soft:#3A1F15; --accent-line:#8A3A20;
+    --ink:#F2EEEA; --ink-2:#C4BDB6; --ink-3:#958D86;
+    --bg:#171513; --band:#1F1C1A; --warm:#221D1A; --line:#35302C; --dark:#0E0D0C; --shot-bg:#26221F;
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --accent:#FF6A3D; --accent-soft:#3A1F15; --accent-line:#8A3A20;
+  --ink:#F2EEEA; --ink-2:#C4BDB6; --ink-3:#958D86;
+  --bg:#171513; --band:#1F1C1A; --warm:#221D1A; --line:#35302C; --dark:#0E0D0C; --shot-bg:#26221F;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:15.5px;line-height:1.6;padding-inline:16px}
+.wrap{max-width:1120px;margin-inline:auto}
+h1,h2,h3{text-wrap:balance;line-height:1.25;margin:0}
+a{color:var(--accent)}
+a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:4px}
+.eyebrow{font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--accent)}
+.mono{font-family:var(--mono);font-size:12.5px}
+
+header.top{padding-block:40px 28px;border-bottom:1px solid var(--line);display:grid;gap:14px}
+header.top h1{font-size:clamp(26px,4vw,36px);font-weight:700}
+header.top p{margin:0;color:var(--ink-2);max-width:68ch}
+
+nav.jump{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);border-bottom:1px solid var(--line);margin-inline:-16px;padding:10px 16px;overflow-x:auto;white-space:nowrap}
+nav.jump .wrap{display:flex;gap:6px}
+nav.jump a{display:inline-block;padding:5px 12px;border:1px solid var(--line);border-radius:999px;color:var(--ink-2);text-decoration:none;font-size:13.5px}
+nav.jump a:hover{border-color:var(--accent-line);color:var(--accent)}
+nav.jump a.home{border-color:var(--accent);color:var(--accent);font-weight:600}
+
+section{padding-block:40px;border-bottom:1px solid var(--line)}
+.sec-head{display:grid;gap:6px;margin-bottom:22px}
+.sec-head h2{font-size:24px;font-weight:700}
+.sec-head p{margin:0;color:var(--ink-2);max-width:70ch}
+
+/* Tone màu */
+.tone{background:var(--warm);border:1px solid var(--line);border-radius:10px;padding:22px;display:grid;gap:16px}
+.swatches{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px}
+.sw{display:grid;gap:6px}
+.sw i{display:block;height:56px;border-radius:6px;border:1px solid rgba(0,0,0,.08)}
+.sw b{font-size:13.5px;font-weight:600}
+.sw span{color:var(--ink-3)}
+.rule{margin:0;color:var(--ink-2);font-size:14.5px}
+.rule strong{color:var(--ink)}
+
+/* Khối trang tham khảo */
+.ref{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:28px;align-items:start}
+.shot{background:var(--shot-bg);border:1px solid var(--line);border-radius:10px;overflow:hidden}
+.shot .bar{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:8px 12px;border-bottom:1px solid var(--line);background:var(--band)}
+.shot .bar .mono{color:var(--ink-3);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.shot .bar a{font-size:12.5px;white-space:nowrap}
+.shot .scroll{height:620px;overflow-y:auto;overscroll-behavior:contain}
+.shot img{display:block;width:100%;height:auto}
+.notes{display:grid;gap:16px}
+.meta{display:flex;flex-wrap:wrap;gap:6px}
+.chip{font-size:12px;padding:2px 10px;border-radius:999px;background:var(--band);color:var(--ink-2);border:1px solid var(--line)}
+.chip.fit{background:var(--accent-soft);color:var(--accent);border-color:var(--accent-line)}
+.notes h3{font-size:14px;font-weight:600;color:var(--ink);margin-bottom:6px}
+.notes ul{margin:0;padding-left:18px;display:grid;gap:5px;color:var(--ink-2)}
+.notes li strong{color:var(--ink);font-weight:600}
+.apply{border-left:3px solid var(--accent);padding:10px 14px;background:var(--warm);border-radius:0 8px 8px 0}
+.apply h3{color:var(--accent)}
+.apply p{margin:0;color:var(--ink-2)}
+.skip{color:var(--ink-3);font-size:13.5px;margin:0}
+
+/* Bảng đề xuất */
+.tbl{overflow-x:auto;border:1px solid var(--line);border-radius:10px}
+table{border-collapse:collapse;width:100%;min-width:680px;font-size:14.5px}
+th,td{text-align:left;padding:12px 14px;border-bottom:1px solid var(--line);vertical-align:top}
+th{background:var(--band);font-weight:600;font-size:13px;color:var(--ink-2)}
+tr:last-child td{border-bottom:0}
+td:first-child{font-weight:600;white-space:nowrap}
+td .src{color:var(--accent);font-weight:500}
+.foot{padding-block:28px 48px;color:var(--ink-3);font-size:13.5px;display:grid;gap:6px}
+.foot p{margin:0;max-width:80ch}
+
+@media (max-width:820px){
+  .ref{grid-template-columns:1fr}
+  .shot .scroll{height:480px}
+}
+@media (prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <header class="top">
+    <div class="eyebrow">Web DoctoTek mới · tài liệu tham khảo</div>
+    <h1>Bố cục và UX từ 8 nền tảng học y khoa</h1>
+    <p>Ảnh chụp toàn trang chủ ngày 28/09/2026, khung 1440px. Chỉ lấy bố cục và cách tổ chức thông tin. Màu sắc, font và nhận diện vẫn giữ theo doctotek.com hiện tại. Cuộn trong từng khung ảnh để xem hết trang.</p>
+  </header>
+</div>
+
+<nav class="jump" aria-label="Chuyển nhanh">
+  <div class="wrap">
+    <a class="home" href="#doctotek">DoctoTek hiện tại</a>
+    <a href="#mims">MIMS VN</a>
+    <a href="#osmosis">Osmosis</a>
+    <a href="#amboss">AMBOSS</a>
+    <a href="#lecturio">Lecturio</a>
+    <a href="#medscape">Medscape</a>
+    <a href="#harvard">Harvard HMS</a>
+    <a href="#mycme">myCME</a>
+    <a href="#medshr">MedShr</a>
+    <a href="#de-xuat">Đề xuất</a>
+  </div>
+</nav>
+
+<div class="wrap">
+
+<section id="tone">
+  <div class="sec-head">
+    <div class="eyebrow">Giữ nguyên</div>
+    <h2>Tone màu doctotek.com</h2>
+    <p>Mã màu đo trực tiếp từ pixel trên ảnh chụp doctotek.com, không lấy từ file theme trong code.</p>
+  </div>
+  <div class="tone">
+    <div class="swatches">
+      <div class="sw"><i style="background:#D93300"></i><b>Cam chủ đạo</b><span class="mono">#D93300</span><span>Nút chính, chữ nhấn, icon</span></div>
+      <div class="sw"><i style="background:#EC997F"></i><b>Viền cam nhạt</b><span class="mono">#EC997F</span><span>Viền nút phụ (outline)</span></div>
+      <div class="sw"><i style="background:#FFFFFF"></i><b>Nền trắng</b><span class="mono">#FFFFFF</span><span>Header, nền nội dung</span></div>
+      <div class="sw"><i style="background:#F5F5F5"></i><b>Nền xám nhạt</b><span class="mono">#F5F5F5</span><span>Hero, dải phân khối</span></div>
+      <div class="sw"><i style="background:#FFF9F6"></i><b>Nền kem cam</b><span class="mono">#FFF9F6</span><span>Footer, khối nhấn nhẹ</span></div>
+      <div class="sw"><i style="background:#212121"></i><b>Chữ chính</b><span class="mono">#212121</span><span>Tiêu đề, nội dung</span></div>
+      <div class="sw"><i style="background:#2C2C2C"></i><b>Đen nút store</b><span class="mono">#2C2C2C</span><span>Google Play, App Store</span></div>
+    </div>
+    <p class="rule"><strong>Quy tắc khi áp mẫu:</strong> màu xanh, teal hay navy của các trang dưới đây đều quy về cam <span class="mono">#D93300</span> hoặc đen <span class="mono">#2C2C2C</span>; nền màu đậm quy về <span class="mono">#F5F5F5</span> hoặc <span class="mono">#FFF9F6</span>. Họa tiết mạch điện đường mảnh ở hero DoctoTek là nhận diện riêng, nên giữ lại.</p>
+  </div>
+</section>
+
+<section id="doctotek">
+  <div class="sec-head">
+    <div class="eyebrow">Bản đang chạy</div>
+    <h2>DoctoTek hiện tại</h2>
+  </div>
+  <div class="ref">
+    <figure class="shot" style="margin:0">
+      <div class="bar"><span class="mono">doctotek.com</span><a href="doctotek.jpg" target="_blank" rel="noopener">Mở ảnh gốc</a></div>
+      <div class="scroll"><img src="doctotek.jpg" alt="Trang chủ doctotek.com chụp toàn trang" loading="lazy"></div>
+    </figure>
+    <div class="notes">
+      <div>
+        <h3>Thứ tự khối hiện tại</h3>
+        <ul>
+          <li><strong>Hero căn giữa:</strong> tiêu đề 3 dòng, dòng cam "Khóa học y khoa • Tra cứu y học chứng cứ", 2 nút viền và 1 nút đặc, 2 nút store.</li>
+          <li><strong>Khóa học y khoa ngắn:</strong> mockup điện thoại bên trái, 4 gạch đầu dòng bên phải.</li>
+          <li><strong>AI y học chứng cứ:</strong> 1 thẻ đơn có nút "Thử tra cứu".</li>
+          <li><strong>Cộng đồng chuyên môn:</strong> vòng tròn avatar chuyên gia.</li>
+          <li><strong>Hợp tác hệ sinh thái:</strong> 5 icon tròn màu cam.</li>
+          <li><strong>Đội ngũ:</strong> chữ bên trái, ảnh bên phải.</li>
+          <li><strong>Footer</strong> nền kem, thông tin pháp lý, nút store.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Chỗ còn yếu nếu so với các trang dưới</h3>
+        <ul>
+          <li>Không có hình ảnh sản phẩm thật: chưa thấy khóa học, bài giảng hay kết quả AI trông ra sao.</li>
+          <li>Không có lối tắt theo đối tượng (bác sĩ, dược sĩ, điều dưỡng, giảng viên).</li>
+          <li>Không có số liệu hoặc lời chứng thực tạo niềm tin.</li>
+          <li>Khối AI chỉ là một thẻ chữ, chưa cho thử ngay tại trang.</li>
+          <li>Có 3 nút CTA ngang cấp trong hero, người xem không biết nên bấm nút nào trước.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="mims">
+  <div class="ref">
+    <figure class="shot" style="margin:0">
+      <div class="bar"><span class="mono">education.mims.com/vn</span><a href="mims-vn.jpg" target="_blank" rel="noopener">Mở ảnh gốc</a></div>
+      <div class="scroll"><img src="mims-vn.jpg" alt="Trang chủ MIMS Education Việt Nam" loading="lazy"></div>
+    </figure>
+    <div class="notes">
+      <div class="sec-head" style="margin:0">
+        <div class="eyebrow">Đối thủ trực tiếp tại Việt Nam</div>
+        <h2>MIMS Education VN</h2>
+      </div>
+      <div class="meta"><span class="chip fit">Gần DoctoTek nhất</span><span class="chip">CME/CPD</span><span class="chip">Tiếng Việt</span><span class="chip">Tone đỏ</span></div>
+      <div>
+        <h3>Đáng học về bố cục</h3>
+        <ul>
+          <li><strong>Thẻ khóa học</strong> có nhãn chuyên khoa trên ảnh, nhãn "Mới", thời lượng ở góc ảnh và nút "Đăng ký" ngay trên thẻ.</li>
+          <li>Carousel "Khóa học dành cho Doctors" có dropdown đổi đối tượng ngay tại tiêu đề khối.</li>
+          <li>Danh sách "Khóa học được quan tâm" 2 cột, thumbnail nhỏ: gọn, xem được nhiều khóa trên một màn.</li>
+          <li><strong>FAQ dạng accordion</strong> về CME, trả lời sẵn câu hỏi của bác sĩ Việt.</li>
+          <li>Dải tải app có mockup nhiều thiết bị, đặt ngay trên footer.</li>
+        </ul>
+      </div>
+      <div class="apply"><h3>Áp vào DoctoTek</h3><p>Làm mẫu cho thẻ khóa học và trang danh sách khóa học. FAQ về CME đặt trước footer. Dải tải app giữ tone cam thay vì đỏ.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="osmosis">
+  <div class="ref">
+    <figure class="shot" style="margin:0">
+      <div class="bar"><span class="mono">osmosis.org</span><a href="osmosis.jpg" target="_blank" rel="noopener">Mở ảnh gốc</a></div>
+      <div class="scroll"><img src="osmosis.jpg" alt="Trang chủ Osmosis" loading="lazy"></div>
+    </figure>
+    <div class="notes">
+      <div class="sec-head" style="margin:0">
+        <div class="eyebrow">Học y khoa bằng video</div>
+        <h2>Osmosis (Elsevier)</h2>
+      </div>
+      <div class="meta"><span class="chip fit">Bố cục landing tốt nhất</span><span class="chip">Video</span><span class="chip">Nghiên cứu 2024: dễ dùng nhất</span></div>
+      <div>
+        <h3>Đáng học về bố cục</h3>
+        <ul>
+          <li><strong>Hero 2 cột:</strong> thông điệp và 1 nút chính bên trái, minh họa bên phải. Chỉ một CTA chính.</li>
+          <li><strong>Hàng lối tắt theo đối tượng</strong> nằm ngay dưới hero: Med Students, Nursing, Other Health Professions.</li>
+          <li>Hàng logo trường "Loved by 8M+ students" tạo niềm tin sớm.</li>
+          <li><strong>3 khối tính năng xen kẽ:</strong> chữ bên trái, ảnh chụp giao diện thật bên phải, mỗi khối nói một lợi ích.</li>
+          <li>Có khung demo bài học thật, testimonial dạng thẻ, dải CTA cuối trang.</li>
+        </ul>
+      </div>
+      <div class="apply"><h3>Áp vào DoctoTek</h3><p>Hero chỉ giữ một nút chính "Khám phá ngay". Thêm hàng lối tắt: Bác sĩ, Dược sĩ, Điều dưỡng, Giảng viên. Khối "Khóa học y khoa ngắn" đổi mockup minh họa sang ảnh chụp app thật.</p></div>
+      <p class="skip">Không lấy: nền xanh đậm toàn hero, nhân vật hoạt hình.</p>
+    </div>
+  </div>
+</section>
+
+<section id="amboss">
+  <div class="ref">
+    <figure class="shot" style="margin:0">
+      <div class="bar"><span class="mono">amboss.com/us</span><a href="amboss.jpg" target="_blank" rel="noopener">Mở ảnh gốc</a></div>
+      <div class="scroll"><img src="amboss.jpg" alt="Trang chủ AMBOSS" loading="lazy"></div>
+    </figure>
+    <div class="notes">
+      <div class="sec-head" style="margin:0">
+        <div class="eyebrow">Thư viện kiến thức và AI lâm sàng</div>
+        <h2>AMBOSS</h2>
+      </div>
+      <div class="meta"><span class="chip fit">Mẫu cho khối AI</span><span class="chip">Knowledge + Qbank</span><span class="chip">AI Mode</span></div>
+      <div>
+        <h3>Đáng học về bố cục</h3>
+        <ul>
+          <li><strong>Thanh thông báo AI</strong> trên cùng, đóng được: dùng để giới thiệu tính năng mới mà không làm hero nặng thêm.</li>
+          <li><strong>Ảnh sản phẩm có tab:</strong> một khung giao diện lớn, bên dưới là 3 tab tính năng. Bấm tab nào thì ảnh đổi theo tab đó.</li>
+          <li>Khối "Empowering all medical professionals" chia thẻ theo từng đối tượng.</li>
+          <li><strong>Testimonial dạng bento</strong> xen con số lớn (95%).</li>
+          <li>Có 2 thẻ "We stay ahead" giới thiệu cập nhật AI, dẫn sang blog.</li>
+        </ul>
+      </div>
+      <div class="apply"><h3>Áp vào DoctoTek</h3><p>Khối "AI y học chứng cứ" hiện chỉ có 1 thẻ. Có thể đổi thành ảnh giao diện kèm tab cho các tính năng AI đang có: tra cứu EBM, soạn bài giảng, tóm tắt.</p></div>
+      <p class="skip">Không lấy: nền teal, nút hồng. Lúc chụp có popup cookie, đã tắt trước khi chụp.</p>
+    </div>
+  </div>
+</section>
+
+<section id="lecturio">
+  <div class="ref">
+    <figure class="shot" style="margin:0">
+      <div class="bar"><span class="mono">lecturio.com</span><a href="lecturio.jpg" target="_blank" rel="noopener">Mở ảnh gốc</a></div>
+      <div class="scroll"><img src="lecturio.jpg" alt="Trang chủ Lecturio" loading="lazy"></div>
+    </figure>
+    <div class="notes">
+      <div class="sec-head" style="margin:0">
+        <div class="eyebrow">Video bài giảng và lộ trình học</div>
+        <h2>Lecturio</h2>
+      </div>
+      <div class="meta"><span class="chip fit">Hero giống DoctoTek</span><span class="chip">Learning paths</span></div>
+      <div>
+        <h3>Đáng học về bố cục</h3>
+        <ul>
+          <li>Hero căn giữa, nền nhạt, giống DoctoTek. Điểm khác là <strong>lưới 6 thẻ chọn chương trình</strong> ngay dưới tiêu đề thay cho nhiều nút.</li>
+          <li><strong>Dải 4 tính năng có icon</strong> đè lên ảnh lớn: Qbank AI Tutor, Video Lessons, Learning Paths, Concept Pages.</li>
+          <li>Số liệu hiệu quả dạng vòng tròn (85%, 97%, 93%) kèm biểu đồ.</li>
+          <li>Có 1 câu quote lớn ở giữa trang và khối sản phẩm 2 cột có ảnh giao diện.</li>
+        </ul>
+      </div>
+      <div class="apply"><h3>Áp vào DoctoTek</h3><p>Muốn giữ hero căn giữa thì thay 2 nút viền bằng 2 thẻ có icon: "Khóa học y khoa" và "AI y học chứng cứ". Thêm một dải icon cho 4 mảng: VOD, Livestream, CME, Tra cứu thuốc.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="medscape">
+  <div class="ref">
+    <figure class="shot" style="margin:0">
+      <div class="bar"><span class="mono">medscape.com</span><a href="medscape.jpg" target="_blank" rel="noopener">Mở ảnh gốc</a></div>
+      <div class="scroll"><img src="medscape.jpg" alt="Trang chủ Medscape" loading="lazy"></div>
+    </figure>
+    <div class="notes">
+      <div class="sec-head" style="margin:0">
+        <div class="eyebrow">Tin tức, tra cứu thuốc, CME</div>
+        <h2>Medscape</h2>
+      </div>
+      <div class="meta"><span class="chip fit">Mẫu cho trang bài viết và tra cứu</span><span class="chip">Mật độ nội dung cao</span></div>
+      <div>
+        <h3>Đáng học về bố cục</h3>
+        <ul>
+          <li><strong>Ô tìm kiếm lớn ở giữa header, có nút "AI Mode" nằm ngay trong ô:</strong> một chỗ nhập vừa tra thuốc vừa hỏi AI.</li>
+          <li>Hàng tab chuyên khoa (Cardiology, Neurology…) để lọc tin nhanh.</li>
+          <li>Tin nổi bật chia 3 cột: ảnh lớn, tiêu đề và mô tả, rồi danh sách phụ có thumbnail nhỏ.</li>
+          <li>Dòng meta thống nhất: nguồn, ngày, số bình luận.</li>
+        </ul>
+      </div>
+      <div class="apply"><h3>Áp vào DoctoTek</h3><p>Dùng cho trang bài viết và tra cứu thuốc sau khi đăng nhập. Ô tìm kiếm có công tắc "AI" gộp được tra cứu thuốc và AI EBM đang có vào một chỗ nhập.</p></div>
+      <p class="skip">Không lấy: font serif cho tiêu đề tin, banner quảng cáo.</p>
+    </div>
+  </div>
+</section>
+
+<section id="harvard">
+  <div class="ref">
+    <figure class="shot" style="margin:0">
+      <div class="bar"><span class="mono">learn.hms.harvard.edu</span><a href="harvard.jpg" target="_blank" rel="noopener">Mở ảnh gốc</a></div>
+      <div class="scroll"><img src="harvard.jpg" alt="Trang chủ Harvard Medical School Continuing Education" loading="lazy"></div>
+    </figure>
+    <div class="notes">
+      <div class="sec-head" style="margin:0">
+        <div class="eyebrow">Đào tạo liên tục</div>
+        <h2>Harvard Medical School</h2>
+      </div>
+      <div class="meta"><span class="chip fit">Mẫu cho tìm khóa học</span><span class="chip">Cao cấp, học thuật</span></div>
+      <div>
+        <h3>Đáng học về bố cục</h3>
+        <ul>
+          <li><strong>Hộp "Start Exploring" đè lên mép dưới hero:</strong> ô tìm khóa học lớn, bên dưới là chip lọc nhanh theo chủ đề.</li>
+          <li>Thẻ "Featured Programs" có nhãn loại chương trình và hình thức học.</li>
+          <li><strong>Dải số liệu:</strong> 200+, 13,000, 100+, mỗi số kèm một dòng giải thích.</li>
+          <li>Có "Learner Stories" dạng thẻ bài viết, rồi "Who We Are" với ảnh và chữ xen kẽ.</li>
+        </ul>
+      </div>
+      <div class="apply"><h3>Áp vào DoctoTek</h3><p>Khối tìm khóa học với chip chuyên khoa đặt ngay sau hero. Khối "Cộng đồng chuyên môn" thêm dải số liệu thật: số khóa học, số chuyên gia, số học viên.</p></div>
+      <p class="skip">Không lấy: nền đỏ đô, font serif lớn.</p>
+    </div>
+  </div>
+</section>
+
+<section id="mycme">
+  <div class="ref">
+    <figure class="shot" style="margin:0">
+      <div class="bar"><span class="mono">mycme.com</span><a href="mycme.jpg" target="_blank" rel="noopener">Mở ảnh gốc</a></div>
+      <div class="scroll"><img src="mycme.jpg" alt="Trang chủ myCME" loading="lazy"></div>
+    </figure>
+    <div class="notes">
+      <div class="sec-head" style="margin:0">
+        <div class="eyebrow">Danh mục CME miễn phí</div>
+        <h2>myCME</h2>
+      </div>
+      <div class="meta"><span class="chip">Mẫu cho danh mục theo chuyên khoa</span><span class="chip">Thiết kế cũ hơn</span></div>
+      <div>
+        <h3>Đáng học về bố cục</h3>
+        <ul>
+          <li>Ô tìm kiếm toàn trang nằm ngay trong header.</li>
+          <li><strong>Lưới 3 cột theo chuyên khoa:</strong> mỗi cột có ảnh đại diện chuyên khoa và 3 đến 4 khóa mới nhất bên dưới.</li>
+          <li>Menu theo trục: nghề nghiệp, chuyên khoa, sự kiện live.</li>
+        </ul>
+      </div>
+      <div class="apply"><h3>Áp vào DoctoTek</h3><p>Chỉ lấy ý tưởng nhóm khóa học theo chuyên khoa cho trang "Khóa học". Phần hình thức trông cũ, không nên theo.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="medshr">
+  <div class="ref">
+    <figure class="shot" style="margin:0">
+      <div class="bar"><span class="mono">medshr.com</span><a href="medshr.jpg" target="_blank" rel="noopener">Mở ảnh gốc</a></div>
+      <div class="scroll"><img src="medshr.jpg" alt="Trang chủ MedShr" loading="lazy"></div>
+    </figure>
+    <div class="notes">
+      <div class="sec-head" style="margin:0">
+        <div class="eyebrow">Cộng đồng bác sĩ, B2B dược</div>
+        <h2>MedShr</h2>
+      </div>
+      <div class="meta"><span class="chip">Mẫu cho trang doanh nghiệp</span><span class="chip">2.5 triệu HCP</span></div>
+      <div>
+        <h3>Đáng học về bố cục</h3>
+        <ul>
+          <li>Hero ảnh toàn khung, 1 nút "Book a demo".</li>
+          <li><strong>Thẻ case study</strong> theo loại chương trình: bệnh hiếm, ung thư, sức khỏe toàn cầu.</li>
+          <li>Khối kết quả có biểu đồ cột so sánh trước và sau.</li>
+          <li>Mockup app đặt cạnh phần mô tả cách thiết kế nội dung.</li>
+        </ul>
+      </div>
+      <div class="apply"><h3>Áp vào DoctoTek</h3><p>Hợp cho trang demo doanh nghiệp <span class="mono">/corporate</span> và khối "Hợp tác cùng hệ sinh thái": đổi 5 icon hiện có thành thẻ case study.</p></div>
+      <p class="skip">Trang dài, nhiều khoảng trắng. Chỉ nên lấy khối case study.</p>
+    </div>
+  </div>
+</section>
+
+<section id="de-xuat">
+  <div class="sec-head">
+    <div class="eyebrow">Tổng hợp</div>
+    <h2>Gợi ý bố cục trang chủ mới, giữ tone cam</h2>
+    <p>Giữ nguyên các khối nội dung DoctoTek đang có, chỉ đổi cách trình bày. Cột cuối ghi rõ khối nào cần thêm dữ liệu hoặc API. Plan hiện tại là làm giống bản cũ, nên các khối đó cần chốt trước khi đưa cho Cherry.</p>
+  </div>
+  <div class="tbl">
+    <table>
+      <thead><tr><th>Khối</th><th>Hiện tại</th><th>Đề xuất bố cục</th><th>Theo mẫu</th><th>Cần thêm gì</th></tr></thead>
+      <tbody>
+        <tr><td>Hero</td><td>Căn giữa, 3 nút CTA</td><td>Giữ căn giữa và họa tiết mạch điện. 1 nút cam chính, 2 nút viền đổi thành 2 thẻ có icon</td><td><span class="src">Lecturio, Osmosis</span></td><td>Không</td></tr>
+        <tr><td>Lối tắt đối tượng</td><td>Chưa có</td><td>Hàng 4 nút: Bác sĩ, Dược sĩ, Điều dưỡng, Giảng viên</td><td><span class="src">Osmosis</span></td><td>Cần chốt mỗi nút dẫn tới trang nào</td></tr>
+        <tr><td>Tìm kiếm</td><td>Chưa có ở trang chủ</td><td>Ô tìm lớn có chip chuyên khoa, công tắc "AI"</td><td><span class="src">Harvard, Medscape</span></td><td>Dùng API tìm kiếm có sẵn; công tắc AI dẫn sang AI EBM</td></tr>
+        <tr><td>Khóa học</td><td>Mockup + 4 gạch đầu dòng</td><td>Carousel thẻ khóa học thật: nhãn chuyên khoa, thời lượng, CME, nút đăng ký</td><td><span class="src">MIMS VN</span></td><td>API danh sách khóa học công khai</td></tr>
+        <tr><td>AI y học chứng cứ</td><td>1 thẻ chữ</td><td>Ảnh giao diện lớn kèm tab: tra cứu EBM, soạn bài giảng, tóm tắt</td><td><span class="src">AMBOSS</span></td><td>Chỉ cần ảnh chụp app</td></tr>
+        <tr><td>Cộng đồng</td><td>Vòng tròn avatar</td><td>Giữ vòng avatar, thêm dải 3 số liệu</td><td><span class="src">Harvard, AMBOSS</span></td><td>Số liệu thật từ DoctoTek</td></tr>
+        <tr><td>Hợp tác</td><td>5 icon tròn</td><td>Hàng logo đối tác, hoặc thẻ case study</td><td><span class="src">Osmosis, MedShr</span></td><td>Logo, cần xin phép đối tác</td></tr>
+        <tr><td>Đội ngũ</td><td>Chữ + ảnh</td><td>Giữ, thêm 2 đến 3 lời chứng thực của bác sĩ</td><td><span class="src">Osmosis</span></td><td>Nội dung chứng thực</td></tr>
+        <tr><td>FAQ</td><td>Chưa có</td><td>Accordion câu hỏi về CME, chứng nhận, thanh toán</td><td><span class="src">MIMS VN</span></td><td>Nội dung FAQ</td></tr>
+        <tr><td>Footer</td><td>Nền kem, store</td><td>Giữ, thêm dải tải app có mockup ngay phía trên</td><td><span class="src">MIMS VN</span></td><td>Không</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<footer class="foot">
+  <p>Các trang Osmosis, Medscape, MIMS VN và Harvard chặn trình duyệt tự động, nên được chụp lại bằng một Chrome riêng. OpenEvidence báo "Unavailable" với truy cập từ Việt Nam nên không có ảnh; bố cục của trang này là một ô hỏi đáp AI kèm trích dẫn nguồn.</p>
+  <p>Chỉ chụp trang chủ công khai. Chưa chụp trang bên trong (danh sách khóa, trang bài học, kết quả AI) vì các trang đó cần đăng nhập.</p>
+</footer>
+</div>
+</body>
+</html>
